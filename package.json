@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/secret-family-recipes-cookbook-5/secret-family-recipes-backend-Tony-Lu/issues"
   },
-  "homepage": "https://github.com/secret-family-recipes-cookbook-5/secret-family-recipes-backend-Tony-Lu#readme"
+  "homepage": "https://github.com/secret-family-recipes-cookbook-5/secret-family-recipes-backend-Tony-Lu#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.3",
+    "sqlite3": "^5.0.6"
+  }
 }
