@@ -1,0 +1,28 @@
+const express = require('express')
+const cors = require('cors')
+const helmet = require('helmet')
+
+const authRouter = require('./api/auth/auth-router')
+const recipesRouter = require('./api/recipes/recipes-router')
+
+const server = express()
+
+server.use(cors())
+server.use(helmet())
+server.use(express.json())
+
+server.use('/api/auth', authRouter)
+server.use('/api/recipes', recipesRouter)
+
+server.get('/', (req, res) => {
+    res.json({ api: "up" })
+})
+
+server.use((err, req, res, next) => { // eslint-disable-line
+    res.status(err.status || 500).json({
+        message: err.message,
+        stack: err.stack
+    })
+})
+
+module.exports = server
