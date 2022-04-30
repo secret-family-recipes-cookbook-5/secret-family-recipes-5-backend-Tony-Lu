@@ -14,8 +14,18 @@ server.use(express.json())
 server.use('/api/auth', authRouter)
 server.use('/api/recipes', recipesRouter)
 
-server.get('/', (req, res) => {
+server.get('/api', (req, res) => {
     res.json({ api: "up" })
+})
+
+server.get('/', (req, res) => {
+    res.json({ server: "up" })
+})
+
+server.use('*', (req, res) => {
+    res.status(404).json({
+        message: "not found"
+    })
 })
 
 server.use((err, req, res, next) => { // eslint-disable-line
