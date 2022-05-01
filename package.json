@@ -8,6 +8,7 @@
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
+    "cleanup": "knex seed:run --specific=01-cleanup.js",
     "seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
