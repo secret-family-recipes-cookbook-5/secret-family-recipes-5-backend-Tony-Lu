@@ -32,21 +32,20 @@ function getById(recipeId) {
 }
 
 
-// function getIngredients(recipe_id) {
-//     return db('ingredients')
-//         .where('recipe_id', recipe_id)
-//         .first()
-// }
+function getIngredientsByRecipeId(recipe_id) {
+    return db('ingredients')
+        .where('recipe_id', recipe_id)
+}
 
-// function getInstructions(recipe_id) {
-//     return db('instructions')
-//         .where('recipe_id', recipe_id)
-//         .first()
-// }
+function getInstructionsByRecipeId(recipe_id) {
+    return db('instructions')
+        .where('recipe_id', recipe_id)
+        .orderBy('step_number')
+}
 
 module.exports = {
     get,
     getById,
-    // getIngredientsByRecipeId,
-    // getInstructionsByRecipeId
+    getIngredientsByRecipeId,
+    getInstructionsByRecipeId
 }
