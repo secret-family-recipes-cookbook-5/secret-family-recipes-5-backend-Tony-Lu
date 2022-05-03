@@ -5,7 +5,7 @@ const Recipe = require('./recipes-model')
 // endpoints here
 router.get('/', async (req, res, next) => {
     try {
-        const recipes = await Recipe.get()
+        const recipes = await Recipe.getRecipes()
         if (!recipes) {
             res.json([])
         } else {
