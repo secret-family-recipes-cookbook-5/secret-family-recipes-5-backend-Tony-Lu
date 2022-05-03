@@ -23,20 +23,30 @@ function get() {
     order by step_number
     */
     return db('recipes')
-        
-        
 }
 
-function getById(recipe_id) {
-    return db('recipes a r')
-        .where('r.recipe_id', recipe_id)
-        .innerJoin('ingredients as ing', 'ing.recipe_id', 'r.recipe_id')
-        .innerJoin('instructions as inst', 'inst.recipe_id', 'r.recipe_id')
-        .orderBy('step_number')
+function getById(recipeId) {
+    return db('recipes')
+        .where('recipe_id', recipeId)
         .first()
 }
 
+
+// function getIngredients(recipe_id) {
+//     return db('ingredients')
+//         .where('recipe_id', recipe_id)
+//         .first()
+// }
+
+// function getInstructions(recipe_id) {
+//     return db('instructions')
+//         .where('recipe_id', recipe_id)
+//         .first()
+// }
+
 module.exports = {
     get,
-    getById
+    getById,
+    // getIngredientsByRecipeId,
+    // getInstructionsByRecipeId
 }
