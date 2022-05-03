@@ -1,4 +1,5 @@
 // model functions here
+const { get } = require('express/lib/response')
 const db = require('../../data/db-config')
 
 /*
@@ -48,27 +49,40 @@ function addNewRecipe(newRecipe) {
         .then(([recipe_id]) => getRecipeById(recipe_id))
 }
 
+function updateRecipe(recipe_id, changes) {
+    return db('recipes')
+        .where('recipe_id', recipe_id)
+        .update(changes)
+        .then(([recipe_id]) => getRecipeById(recipe_id))
+}
+
+function deleteRecipe(recipe_id) {
+    return db('recipes')
+        .where('recipe_id', recipe_id)
+        .del();
+}
+
 function addIngredient(newIngredient) {
     return null
 }
 
-function updateIngredient() {
+function updateIngredient(ingredient_id) {
     return null
 }
 
-function deleteIngredient() {
+function deleteIngredient(ingredient_id) {
     return null
 }
 
-function addInstruction() {
+function addInstruction(instruction) {
     return null
 }
 
-function updateInstruction() {
+function updateInstruction(step_number) {
     return null
 }
 
-function deleteInstruction() {
+function deleteInstruction(step_number) {
     return null
 }
 
@@ -78,6 +92,8 @@ module.exports = {
     getIngredientsByRecipeId,
     getInstructionsByRecipeId,
     addNewRecipe,
+    updateRecipe,
+    deleteRecipe,
     addIngredient,
     updateIngredient,
     deleteIngredient,

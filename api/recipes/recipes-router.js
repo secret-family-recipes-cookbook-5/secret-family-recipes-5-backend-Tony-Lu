@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const { checkRecipeId } = require("./recipes-middleware")
+const { checkRecipeId, validateRecipe } = require("./recipes-middleware")
 const Recipe = require('./recipes-model')
 
 // endpoints here
@@ -20,13 +20,43 @@ router.get('/:id', checkRecipeId, async (req, res, next) => {
     try {
         const ingredients = await Recipe.getIngredientsByRecipeId(req.recipe.recipe_id)
         const instructions = await Recipe.getInstructionsByRecipeId(req.recipe.recipe_id)
-        res.json({
-            ...req.recipe,
-            ingredients: ingredients,
-            instructions: instructions
-        })
+        if (!ingredients || !instructions) {
+            res.json([])
+        } else {
+            res.json({
+                ...req.recipe,
+                ingredients: ingredients,
+                instructions: instructions
+            })
+        }
     } catch (err) {
         next(err)
+    }
+})
+
+router.post('/', validateRecipe, (req, res, next) => {
+    Recipe.addNewRecipe(req.body)
+        .then(newRecipe => {
+            res.status(201).json(newRecipe)
+        })
+        .catch(next)
+})
+
+router.put('/:id', checkRecipeId, validateRecipe, (req, res, next) => {
+    const { changes } = req.body
+    Recipe.updateRecipe(req.params.id, changes)
+        .then(updatedRecipe => {
+            res.json(updatedRecipe)
+        })
+        .catch(next)
+})
+
+router.delete('/:id', checkRecipeId, async (req, res, next) => {
+    try {
+        await Recipe.deleteRecipe(req.params.id)
+        res.json(req.recipe)
+    } catch (err) {
+        next(err);
     }
 })
 

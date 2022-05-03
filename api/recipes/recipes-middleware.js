@@ -12,7 +12,7 @@ async function checkRecipeId (req, res, next) {
     }
 }
 
-function validateNewRecipe (req, res, next) {
+function validateRecipe (req, res, next) {
     const newRecipe = req.body
     if (!newRecipe.title || !newRecipe.source || !newRecipe.category) {
         res.status(400).json({
@@ -54,7 +54,7 @@ function validateInstructions (req, res, next) {
 
 module.exports = { 
     checkRecipeId,
-    validateNewRecipe,
+    validateRecipe,
     validateIngredients,
     validateInstructions, 
 }
