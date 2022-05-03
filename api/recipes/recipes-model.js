@@ -13,7 +13,7 @@ db('employees as e')
   .select('d.id', 'd.name', 'e.first_name', 'e.last_name', 'e.salary')
 */
 
-function get() {
+function getRecipes() {
     /*
     select * from recipes as r
     join ingredients as ing
@@ -25,12 +25,11 @@ function get() {
     return db('recipes')
 }
 
-function getById(recipeId) {
+function getRecipeById(recipeId) {
     return db('recipes')
         .where('recipe_id', recipeId)
         .first()
 }
-
 
 function getIngredientsByRecipeId(recipe_id) {
     return db('ingredients')
@@ -43,9 +42,46 @@ function getInstructionsByRecipeId(recipe_id) {
         .orderBy('step_number')
 }
 
+function addNewRecipe(newRecipe) {
+    return db('recipes')
+        .insert(newRecipe)
+        .then(([recipe_id]) => getRecipeById(recipe_id))
+}
+
+function addIngredient(newIngredient) {
+    return null
+}
+
+function updateIngredient() {
+    return null
+}
+
+function deleteIngredient() {
+    return null
+}
+
+function addInstruction() {
+    return null
+}
+
+function updateInstruction() {
+    return null
+}
+
+function deleteInstruction() {
+    return null
+}
+
 module.exports = {
-    get,
-    getById,
+    getRecipes,
+    getRecipeById,
     getIngredientsByRecipeId,
-    getInstructionsByRecipeId
+    getInstructionsByRecipeId,
+    addNewRecipe,
+    addIngredient,
+    updateIngredient,
+    deleteIngredient,
+    addInstruction,
+    updateInstruction,
+    deleteInstruction
 }
