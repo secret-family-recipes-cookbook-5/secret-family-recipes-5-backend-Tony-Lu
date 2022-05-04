@@ -99,32 +99,30 @@ router.delete(
 )
 
 // INSTRUCTIONS
-router.post(
-    '/:id/instructions',
-    checkRecipeId,
-    validateInstructions,
-    (req, res, next) => {
-        res.send('add instructions')
-    }
-)
+// router.post(
+//     '/:id/instructions',
+//     checkRecipeId,
+//     validateInstructions,
+//     (req, res, next) => {
+//         res.send('add instructions')
+//     }
+// )
 
-router.put(
-    '/:id/instructions/:id',
-    checkRecipeId,
-    validateInstructions,
-    (req, res, next) => {
-        res.send('update instruction')
-    }
-)
+// router.put(
+//     '/:id/instructions/:id',
+//     checkRecipeId,
+//     validateInstructions,
+//     (req, res, next) => {
+//         res.send('update instruction')
+//     }
+// )
 
-router.delete(
-    '/:id/instructions/:id',
-    checkRecipeId,
-    (req, res, next) => {
-        req.send('delete instruction')
-    }
-)
-
-router.post
+// router.delete(
+//     '/:id/instructions/:id',
+//     checkRecipeId,
+//     (req, res, next) => {
+//         req.send('delete instruction')
+//     }
+// )
 
 module.exports = router
