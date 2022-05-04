@@ -9,8 +9,8 @@ const instructionsRouter = require('./api/instructions/instructions-router')
 
 const server = express()
 
-server.use(cors())
 server.use(helmet())
+server.use(cors())
 server.use(express.json())
 
 server.use('/api/auth', authRouter)
