@@ -4,6 +4,8 @@ const helmet = require('helmet')
 
 const authRouter = require('./api/auth/auth-router')
 const recipesRouter = require('./api/recipes/recipes-router')
+const ingredientsRouter = require('./api/ingredients/ingredients-router')
+const instructionsRouter = require('./api/instructions/instructions-router')
 
 const server = express()
 
