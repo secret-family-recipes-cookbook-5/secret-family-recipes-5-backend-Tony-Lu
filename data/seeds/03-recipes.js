@@ -9,7 +9,8 @@ const recipes = [
   {
     title: 'broccoli pesto pasta',
     source: 'Uncle Carlo diCocco',
-    category: 'Italian'
+    category: 'Italian',
+    description: "Uncle Carlo's delicious broccoli pesto pasta recipe"
   }
 ]
 

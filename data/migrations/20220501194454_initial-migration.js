@@ -11,9 +11,9 @@ exports.up = function(knex) {
             table.increments('recipe_id')
             table.string('title', 255).notNullable()
             table.string('source', 255).notNullable()
-            table.string('description')
+            table.string('description').defaultTo("")
             table.string('category', 255).notNullable()
-            table.timestamp('recipe_added').defaultTo(knex.fn.now())
+            table.datetime('recipe_added').defaultTo(knex.fn.now())
         })
         .createTable('ingredients', table => {
             table.increments('ingredient_id')
