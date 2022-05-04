@@ -1,5 +1,4 @@
 // model functions here
-const { get } = require('express/lib/response')
 const db = require('../../data/db-config')
 
 /*
