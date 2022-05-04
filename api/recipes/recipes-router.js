@@ -1,8 +1,10 @@
 const router = require("express").Router()
-const { checkRecipeId, validateRecipe } = require("./recipes-middleware")
+const { checkRecipeId, validateRecipe, validateIngredients, validateInstructions } = require("./recipes-middleware")
 const Recipe = require('./recipes-model')
 
 // endpoints here
+
+// RECIPES
 router.get('/', async (req, res, next) => {
     try {
         const recipes = await Recipe.getRecipes()
@@ -68,5 +70,61 @@ router.delete('/:id', checkRecipeId, async (req, res, next) => {
         next(err);
     }
 })
+
+// INGREDIENTS
+router.post(
+    '/:id/ingredients', 
+    checkRecipeId, 
+    validateIngredients,
+    (req, res, next) => {
+        res.send('add ingredients')
+    }
+)
+
+router.put(
+    '/:id/ingredients/:id',
+    checkRecipeId,
+    validateIngredients,
+    (req, res, next) => {
+        res.send('update ingredient')
+    }
+)
+
+router.delete(
+    '/:id/ingredients/:id',
+    checkRecipeId,
+    (req, res, next) => {
+        res.send('delete ingredient')
+    }
+)
+
+// INSTRUCTIONS
+router.post(
+    '/:id/instructions',
+    checkRecipeId,
+    validateInstructions,
+    (req, res, next) => {
+        res.send('add instructions')
+    }
+)
+
+router.put(
+    '/:id/instructions/:id',
+    checkRecipeId,
+    validateInstructions,
+    (req, res, next) => {
+        res.send('update instruction')
+    }
+)
+
+router.delete(
+    '/:id/instructions/:id',
+    checkRecipeId,
+    (req, res, next) => {
+        req.send('delete instruction')
+    }
+)
+
+router.post
 
 module.exports = router
