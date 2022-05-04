@@ -37,6 +37,10 @@ function validateIngredients (req, res, next) {
     }
 }
 
+function checkIngredientId (req, res, next) {
+    next()
+}
+
 function validateInstructions (req, res, next) {
     const newInstruction = req.body
     if (
@@ -52,9 +56,15 @@ function validateInstructions (req, res, next) {
     } 
 }
 
+function checkInstructionId (req, res, next) {
+    next()
+}
+
 module.exports = { 
     checkRecipeId,
     validateRecipe,
     validateIngredients,
+    checkIngredientId,
     validateInstructions, 
+    checkInstructionId
 }
