@@ -13,6 +13,8 @@ server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api/recipes', recipesRouter)
+server.use('/api/ingredients', ingredientsRouter)
+server.use('/api/instructions', instructionsRouter)
 
 server.get('/api', (req, res) => {
     res.json({ api: "up" })
