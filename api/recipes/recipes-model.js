@@ -62,6 +62,10 @@ function deleteRecipe(recipe_id) {
         .del()
 }
 
+function getIngredientById(recipe_id, ingredient_id) {
+
+}
+
 // function addIngredient(newIngredient) {
 //     return null
 // }
@@ -73,6 +77,10 @@ function deleteRecipe(recipe_id) {
 // function deleteIngredient(ingredient_id) {
 //     return null
 // }
+
+function getInstructionById(recipe_id, step_id) {
+    
+}
 
 // function addInstruction(instruction) {
 //     return null
@@ -93,10 +101,12 @@ module.exports = {
     getInstructionsByRecipeId,
     addNewRecipe,
     updateRecipe,
-    deleteRecipe
+    deleteRecipe,
+    // getIngredientById
     // addIngredient,
     // updateIngredient,
     // deleteIngredient,
+    // getInstructionById
     // addInstruction,
     // updateInstruction,
     // deleteInstruction
