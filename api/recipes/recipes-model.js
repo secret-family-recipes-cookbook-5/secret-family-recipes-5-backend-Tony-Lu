@@ -53,38 +53,38 @@ function updateRecipe(recipe_id, changes) {
     return db('recipes')
         .where('recipe_id', recipe_id)
         .update(changes)
-        .then(([recipe_id]) => getRecipeById(recipe_id))
+        .then(count => (count > 0 ? getRecipeById(recipe_id) : null))
 }
 
 function deleteRecipe(recipe_id) {
     return db('recipes')
         .where('recipe_id', recipe_id)
-        .del();
+        .del()
 }
 
-function addIngredient(newIngredient) {
-    return null
-}
+// function addIngredient(newIngredient) {
+//     return null
+// }
 
-function updateIngredient(ingredient_id) {
-    return null
-}
+// function updateIngredient(ingredient_id) {
+//     return null
+// }
 
-function deleteIngredient(ingredient_id) {
-    return null
-}
+// function deleteIngredient(ingredient_id) {
+//     return null
+// }
 
-function addInstruction(instruction) {
-    return null
-}
+// function addInstruction(instruction) {
+//     return null
+// }
 
-function updateInstruction(step_number) {
-    return null
-}
+// function updateInstruction(step_number) {
+//     return null
+// }
 
-function deleteInstruction(step_number) {
-    return null
-}
+// function deleteInstruction(step_number) {
+//     return null
+// }
 
 module.exports = {
     getRecipes,
@@ -93,11 +93,11 @@ module.exports = {
     getInstructionsByRecipeId,
     addNewRecipe,
     updateRecipe,
-    deleteRecipe,
-    addIngredient,
-    updateIngredient,
-    deleteIngredient,
-    addInstruction,
-    updateInstruction,
-    deleteInstruction
+    deleteRecipe
+    // addIngredient,
+    // updateIngredient,
+    // deleteIngredient,
+    // addInstruction,
+    // updateInstruction,
+    // deleteInstruction
 }

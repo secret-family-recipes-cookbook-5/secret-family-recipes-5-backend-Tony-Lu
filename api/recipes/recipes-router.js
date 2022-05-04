@@ -42,13 +42,22 @@ router.post('/', validateRecipe, (req, res, next) => {
         .catch(next)
 })
 
-router.put('/:id', checkRecipeId, validateRecipe, (req, res, next) => {
-    const { changes } = req.body
-    Recipe.updateRecipe(req.params.id, changes)
-        .then(updatedRecipe => {
+router.put(
+    '/:id', 
+    checkRecipeId, 
+    validateRecipe, 
+    async (req, res, next) => {
+        try {
+            // console.log(req.body)
+            const updatedRecipe = await Recipe.updateRecipe(
+                req.params.id, 
+                req.body
+            )
+            // console.log(updatedRecipe)
             res.json(updatedRecipe)
-        })
-        .catch(next)
+        } catch (err) {
+            next()
+        }
 })
 
 router.delete('/:id', checkRecipeId, async (req, res, next) => {
