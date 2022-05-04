@@ -36,6 +36,36 @@ router.get('/:id', checkRecipeId, async (req, res, next) => {
     }
 })
 
+router.get('/:id/ingredients',checkRecipeId, async (req, res, next) => {
+    try {
+        const ingredients = await Recipe.getIngredientsByRecipeId(req.recipe.recipe_id)
+        if (!ingredients) {
+            res.status(404).json({
+                message: "no ingredients found"
+            })
+        } else {
+            res.json(ingredients)
+        }
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/:id/instructions', checkRecipeId, async (req, res, next) => {
+    try {
+        const instructions = await Recipe.getInstructionsByRecipeId(req.recipe.recipe_id)
+        if (!instructions) {
+            res.status(404).json({
+                message: "no instructions found"
+            })
+        } else {
+            res.json(instructions)
+        }
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.post('/', validateRecipe, (req, res, next) => {
     Recipe.addNewRecipe(req.body)
         .then(newRecipe => {
@@ -71,32 +101,6 @@ router.delete('/:id', checkRecipeId, async (req, res, next) => {
     }
 })
 
-// INGREDIENTS
-router.post(
-    '/:id/ingredients', 
-    checkRecipeId, 
-    validateIngredients,
-    (req, res, next) => {
-        res.send('add ingredients')
-    }
-)
-
-router.put(
-    '/:id/ingredients/:id',
-    checkRecipeId,
-    validateIngredients,
-    (req, res, next) => {
-        res.send('update ingredient')
-    }
-)
-
-router.delete(
-    '/:id/ingredients/:id',
-    checkRecipeId,
-    (req, res, next) => {
-        res.send('delete ingredient')
-    }
-)
 
 // INSTRUCTIONS
 // router.post(
