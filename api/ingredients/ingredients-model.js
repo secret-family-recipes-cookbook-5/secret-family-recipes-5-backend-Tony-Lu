@@ -1,7 +1,9 @@
 const db = require('../../data/db-config')
 
-function getIngredientById(recipe_id, ingredient_id) {
-
+function getIngredientById(ingredient_id) {
+    return db('ingredients')
+        .where('ingredient_id', ingredient_id)
+        .first()
 }
 
 // function addIngredient(newIngredient) {
@@ -17,7 +19,7 @@ function getIngredientById(recipe_id, ingredient_id) {
 // }
 
 module.exports = {
-    // getIngredientById
+    getIngredientById
     // addIngredient,
     // updateIngredient,
     // deleteIngredient,

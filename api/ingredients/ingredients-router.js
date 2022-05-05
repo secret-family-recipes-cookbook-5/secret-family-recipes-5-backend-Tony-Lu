@@ -1,7 +1,16 @@
 const router = require('express').Router()
+const Ingredient = require('./ingredients-model')
 
 router.get('/', (req, res, next) => {
     res.send('Hello from the ingredients router')
+})
+
+router.get('/:id', (req, res, next) => {
+    Ingredient.getIngredientById(req.params.id)
+        .then(ingredient => {
+            res.json(ingredient)
+        })
+        .catch(next)
 })
 
 router.post(
