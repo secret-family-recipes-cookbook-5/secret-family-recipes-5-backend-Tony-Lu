@@ -1,3 +1,5 @@
+const Instruction = require('./instructions-model')
+
 function validateInstruction (req, res, next) {
     const newInstruction = req.body
     if (
@@ -13,8 +15,15 @@ function validateInstruction (req, res, next) {
     } 
 }
 
-function checkInstructionId (req, res, next) {
-    next()
+async function checkInstructionId (req, res, next) {
+    const instruction = await Instruction.getInstructionById(req.params.id)
+    if (!instruction) {
+        res.status(404).json({
+            message: "instruction not found"
+        })
+    } else {
+        next()
+    }
 }
 
 module.exports = {
