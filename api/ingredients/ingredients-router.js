@@ -16,14 +16,26 @@ router.get('/:id', (req, res, next) => {
 router.post(
     '/', 
     (req, res, next) => {
-        res.send('add ingredients')
+        // res.send('add ingredients')
+        console.log(req.body)
+        Ingredient.addIngredient(req.body)
+            .then(newIngredient => {
+                res.json(newIngredient)
+            })
+            .catch(next)
     }
 )
 
 router.put(
     '/:id',
-    (req, res, next) => {
-        res.send('update ingredient')
+    (req, res, next) => { 
+        // res.send('update ingredient')
+        console.log(req.body)
+        Ingredient.updateIngredient(req.params.id, req.body)
+            .then(updated => {
+                res.json(updated)
+            })
+            .catch(next)
     }
 )
 

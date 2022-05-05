@@ -6,21 +6,26 @@ function getIngredientById(ingredient_id) {
         .first()
 }
 
-// function addIngredient(newIngredient) {
-//     return null
-// }
+function addIngredient(newIngredient) {
+    return db('ingredients')
+        .insert(newIngredient)
+        .then(([ingredient_id]) => getIngredientById(ingredient_id))
+}
 
-// function updateIngredient(ingredient_id) {
-//     return null
-// }
+function updateIngredient(ingredient_id, changes) {
+    return db('ingredients')
+        .where('ingredient_id', ingredient_id)
+        .update(changes)
+        .then(count => (count > 0 ? getIngredientById(ingredient_id) : null))
+}
 
 // function deleteIngredient(ingredient_id) {
 //     return null
 // }
 
 module.exports = {
-    getIngredientById
-    // addIngredient,
-    // updateIngredient,
+    getIngredientById,
+    addIngredient,
+    updateIngredient,
     // deleteIngredient,
 }
