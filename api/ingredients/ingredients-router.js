@@ -5,10 +5,6 @@ const {
     checkIngredientId 
 } = require('./ingredients-middleware') 
 
-router.get('/', (req, res, next) => {
-    res.send('Hello from the ingredients router')
-})
-
 router.get(
     '/:id',
     checkIngredientId, 
