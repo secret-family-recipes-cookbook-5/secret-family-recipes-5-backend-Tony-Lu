@@ -22,6 +22,7 @@ async function checkInstructionId (req, res, next) {
             message: "instruction not found"
         })
     } else {
+        req.instruction = instruction
         next()
     }
 }
