@@ -71,6 +71,19 @@ router.post('/', validateRecipe, (req, res, next) => {
         .catch(next)
 })
 
+router.post('/search', async (req, res, next) => {
+    console.log("req.body ==>", req.body)
+    const recipesFound = await Recipe.getRecipeByFilter(req.body)
+    if (!recipesFound) {
+        res.status(404).json({
+            message: "no recipes found associated with title or category"
+        })
+    } else {
+        console.log("recipesFound ==>", recipesFound)
+        // res.json(recipesFound)
+    }
+})
+
 router.put(
     '/:id', 
     checkRecipeId, 

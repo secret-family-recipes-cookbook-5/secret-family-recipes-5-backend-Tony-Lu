@@ -42,6 +42,19 @@ function getInstructionsByRecipeId(recipe_id) {
         .orderBy('step_number')
 }
 
+function getRecipeByFilter(filter) {
+    /*
+    select * from recipes
+    where title = filter or category = filter
+    order by 'recipe_id'
+    */
+    return db('recipes')
+        .select('title', 'category', '')
+        .where('title', filter)
+        .orWhere('category', filter)
+        .orderBy('recipe_id')
+}
+
 function addNewRecipe(newRecipe) {
     return db('recipes')
         .insert(newRecipe)
@@ -67,6 +80,7 @@ module.exports = {
     getRecipeById,
     getIngredientsByRecipeId,
     getInstructionsByRecipeId,
+    getRecipeByFilter,
     addNewRecipe,
     updateRecipe,
     deleteRecipe,
