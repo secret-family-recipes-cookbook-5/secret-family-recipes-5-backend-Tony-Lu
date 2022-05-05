@@ -13,17 +13,13 @@ router.get('/:id', checkInstructionId, (req, res, next) => {
         .catch(next)
 })
 
-router.post(
-    '/',
-    validateInstruction,
-    (req, res, next) => {
-        Instruction.addInstruction(req.body)
-            .then(newInstruction => {
-                res.status(201).json(newInstruction)
-            })
-            .catch(next)
-    }
-)
+router.post('/', validateInstruction, (req, res, next) => {
+    Instruction.addInstruction(req.body)
+        .then(newInstruction => {
+            res.status(201).json(newInstruction)
+        })
+        .catch(next)
+})
 
 router.put(
     '/:id',
@@ -39,17 +35,13 @@ router.put(
     }
 )
 
-router.delete(
-    '/:id',
-    checkInstructionId,
-    async (req, res, next) => {
-        try {
-            await Instruction.deleteInstruction(req.params.id)
-            res.json(req.instruction)
-        } catch (err) {
-            next()
-        }
+router.delete('/:id', checkInstructionId, async (req, res, next) => {
+    try {
+        await Instruction.deleteInstruction(req.params.id)
+        res.json(req.instruction)
+    } catch (err) {
+        next()
     }
-)
+})
 
 module.exports = router
