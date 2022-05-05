@@ -2,9 +2,6 @@ const router = require("express").Router()
 const { checkRecipeId, validateRecipe, validateIngredients, validateInstructions } = require("./recipes-middleware")
 const Recipe = require('./recipes-model')
 
-// endpoints here
-
-// RECIPES
 router.get('/', async (req, res, next) => {
     try {
         const recipes = await Recipe.getRecipes()
@@ -14,7 +11,7 @@ router.get('/', async (req, res, next) => {
             res.json(recipes)
         }
     } catch(err) {
-        next(err)
+        next()
     }
 })
 
@@ -32,7 +29,7 @@ router.get('/:id', checkRecipeId, async (req, res, next) => {
             })
         }
     } catch (err) {
-        next(err)
+        next()
     }
 })
 
@@ -47,7 +44,7 @@ router.get('/:id/ingredients',checkRecipeId, async (req, res, next) => {
             res.json(ingredients)
         }
     } catch (err) {
-        next(err)
+        next()
     }
 })
 
@@ -62,7 +59,7 @@ router.get('/:id/instructions', checkRecipeId, async (req, res, next) => {
             res.json(instructions)
         }
     } catch (err) {
-        next(err)
+        next()
     }
 })
 
@@ -80,12 +77,10 @@ router.put(
     validateRecipe, 
     async (req, res, next) => {
         try {
-            // console.log(req.body)
             const updatedRecipe = await Recipe.updateRecipe(
                 req.params.id, 
                 req.body
             )
-            // console.log(updatedRecipe)
             res.json(updatedRecipe)
         } catch (err) {
             next()
@@ -97,36 +92,8 @@ router.delete('/:id', checkRecipeId, async (req, res, next) => {
         await Recipe.deleteRecipe(req.params.id)
         res.json(req.recipe)
     } catch (err) {
-        next(err);
+        next();
     }
 })
-
-
-// INSTRUCTIONS
-// router.post(
-//     '/:id/instructions',
-//     checkRecipeId,
-//     validateInstructions,
-//     (req, res, next) => {
-//         res.send('add instructions')
-//     }
-// )
-
-// router.put(
-//     '/:id/instructions/:id',
-//     checkRecipeId,
-//     validateInstructions,
-//     (req, res, next) => {
-//         res.send('update instruction')
-//     }
-// )
-
-// router.delete(
-//     '/:id/instructions/:id',
-//     checkRecipeId,
-//     (req, res, next) => {
-//         req.send('delete instruction')
-//     }
-// )
 
 module.exports = router
