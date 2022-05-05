@@ -42,18 +42,22 @@ function getInstructionsByRecipeId(recipe_id) {
         .orderBy('step_number')
 }
 
-function getRecipeByFilter(filter) {
-    /*
-    select * from recipes
-    where title = filter or category = filter
-    order by 'recipe_id'
-    */
-    return db('recipes')
-        .select('title', 'category', '')
-        .where('title', filter)
-        .orWhere('category', filter)
-        .orderBy('recipe_id')
-}
+// function getRecipeByTitle(title) {
+//     /*
+//     select * from recipes
+//     where title = filter or category = filter
+//     order by 'recipe_id'
+//     */
+//     return db('recipes')
+//         .where('title', title)
+//         .orderBy('recipe_id')
+// }
+
+// function getRecipeByCategory(category) {
+//     return db('recipes')
+//         .where('category', category)
+//         .orderBy('recipe_id')
+// }
 
 function addNewRecipe(newRecipe) {
     return db('recipes')
@@ -80,7 +84,8 @@ module.exports = {
     getRecipeById,
     getIngredientsByRecipeId,
     getInstructionsByRecipeId,
-    getRecipeByFilter,
+    // getRecipeByTitle,
+    // getRecipeByCategory,
     addNewRecipe,
     updateRecipe,
     deleteRecipe,
