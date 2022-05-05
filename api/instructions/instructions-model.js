@@ -19,13 +19,15 @@ function updateInstruction(step_id, changes) {
         .then(count => (count > 0 ? getInstructionById(step_id) : null))
 }
 
-// function deleteInstruction(step_id) {
-//     return null
-// }
+function deleteInstruction(step_id) {
+    return db('instructions')
+        .where('step_id', step_id)
+        .del()
+}
 
 module.exports = {
     getInstructionById,
     addInstruction,
     updateInstruction,
-    // deleteInstruction
+    deleteInstruction
 }
