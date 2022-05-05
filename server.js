@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 
+const { restricted } = require('./api/auth/auth-middleware')
+
 const authRouter = require('./api/auth/auth-router')
 const recipesRouter = require('./api/recipes/recipes-router')
 const ingredientsRouter = require('./api/ingredients/ingredients-router')
@@ -14,9 +16,9 @@ server.use(cors())
 server.use(express.json())
 
 server.use('/api/auth', authRouter)
-server.use('/api/recipes', recipesRouter)
-server.use('/api/ingredients', ingredientsRouter)
-server.use('/api/instructions', instructionsRouter)
+server.use('/api/recipes', restricted, recipesRouter)
+server.use('/api/ingredients', restricted, ingredientsRouter)
+server.use('/api/instructions', restricted, instructionsRouter)
 
 server.get('/api', (req, res) => {
     res.json({ api: "up" })
