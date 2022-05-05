@@ -17,7 +17,7 @@ router.post(
     '/', 
     (req, res, next) => {
         // res.send('add ingredients')
-        console.log(req.body)
+        console.log("POST req.body ==>", req.body)
         Ingredient.addIngredient(req.body)
             .then(newIngredient => {
                 res.json(newIngredient)
@@ -30,9 +30,10 @@ router.put(
     '/:id',
     (req, res, next) => { 
         // res.send('update ingredient')
-        console.log(req.body)
+        console.log("PUT req.body ==>", req.body)
         Ingredient.updateIngredient(req.params.id, req.body)
             .then(updated => {
+                console.log("updated ==>", updated)
                 res.json(updated)
             })
             .catch(next)
@@ -42,7 +43,14 @@ router.put(
 router.delete(
     '/:id',
     (req, res, next) => {
-        res.send('delete ingredient')
+        // res.send('delete ingredient')
+        console.log("DELETE req.params.id ==>", req.params.id)
+        Ingredient.deleteIngredient(req.params.id)
+            .then(deleted => {
+                console.log("deleted ==>", deleted)
+                res.json(deleted)
+            })
+            .catch(next)
     }
 )
 

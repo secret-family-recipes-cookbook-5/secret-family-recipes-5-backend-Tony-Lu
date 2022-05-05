@@ -19,13 +19,15 @@ function updateIngredient(ingredient_id, changes) {
         .then(count => (count > 0 ? getIngredientById(ingredient_id) : null))
 }
 
-// function deleteIngredient(ingredient_id) {
-//     return null
-// }
+async function deleteIngredient(ingredient_id) {
+    return db('ingredients')
+        .where('ingredient_id', ingredient_id)
+        .del()
+}
 
 module.exports = {
     getIngredientById,
     addIngredient,
     updateIngredient,
-    // deleteIngredient,
+    deleteIngredient
 }
