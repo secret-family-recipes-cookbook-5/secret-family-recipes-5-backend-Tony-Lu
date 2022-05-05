@@ -1,9 +1,9 @@
 // sample data
 const recipes = [
   {
-    title: 'blackbean sauced noodles (jajangmyun)',
+    title: 'blackbean sauced noodles',
     source: 'Maangchi',
-    description: 'for 2 to 3 servings',
+    description: 'in Korean: jajangmyun, for 2 to 3 servings',
     category: 'Korean'
   },
   {
@@ -19,7 +19,7 @@ const ingredients = [
   // blackbean sauce noodles (recipe_id: 1)
   { ingredient_name: 'jajangmyun noodles', recipe_id: 1 },
   { ingredient_name: 'pork belly', recipe_id: 1 },
-  { ingredient_name: 'Korean radish (daikon)', recipe_id: 1 },
+  { ingredient_name: 'Korean radish', recipe_id: 1 },
   { ingredient_name: 'zucchini', recipe_id: 1 },
   // broccoli pesto pasta (recipe_id: 2)
   { ingredient_name: 'broccoli', recipe_id: 2 },
