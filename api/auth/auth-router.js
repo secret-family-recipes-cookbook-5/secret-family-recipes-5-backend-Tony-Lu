@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     res.send("Hello from auth router")
 })
 
-router.post('/register', validateRegistration, (req, res, next) => {
+router.post('/register', validateRegistration, usernameTaken, (req, res, next) => {
     const { 
         first_name, 
         last_name, 
