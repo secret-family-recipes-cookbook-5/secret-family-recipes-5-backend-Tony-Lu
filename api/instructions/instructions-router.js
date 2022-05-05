@@ -31,10 +31,16 @@ router.post(
 
 router.put(
     '/:id',
-    // checkInstructionId,
-    // validateInstruction,
+    checkInstructionId,
+    validateInstruction,
     (req, res, next) => {
-        res.send('update instruction')
+        // res.send('update instruction')
+        Instruction.updateInstruction(req.params.id, req.body)
+            .then(updated => {
+                console.log("updated instruction ==>", updated)
+                res.json(updated)
+            })
+            .catch(next)
     }
 )
 

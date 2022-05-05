@@ -12,9 +12,12 @@ function addInstruction(newInstruction) {
         .then(([step_id]) => getInstructionById(step_id))
 }
 
-// function updateInstruction(step_id) {
-//     return null
-// }
+function updateInstruction(step_id, changes) {
+    return db('instructions')
+        .where('step_id', step_id)
+        .update(changes)
+        .then(count => (count > 0 ? getInstructionById(step_id) : null))
+}
 
 // function deleteInstruction(step_id) {
 //     return null
@@ -23,6 +26,6 @@ function addInstruction(newInstruction) {
 module.exports = {
     getInstructionById,
     addInstruction,
-    // updateInstruction,
+    updateInstruction,
     // deleteInstruction
 }
