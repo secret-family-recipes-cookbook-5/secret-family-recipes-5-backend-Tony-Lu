@@ -6,7 +6,9 @@ router.get('/', async (req, res, next) => {
     try {
         const recipes = await Recipe.getRecipes()
         if (!recipes) {
-            res.json([])
+            res.status(404).json({
+                message: "no recipes found"
+            })
         } else {
             res.json(recipes)
         }
