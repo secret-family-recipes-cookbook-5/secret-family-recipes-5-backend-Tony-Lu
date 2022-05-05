@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const { checkRecipeId, validateRecipe, validateIngredients, validateInstructions } = require("./recipes-middleware")
+const { checkRecipeId, validateRecipe } = require("./recipes-middleware")
 const Recipe = require('./recipes-model')
 
 router.get('/', async (req, res, next) => {
