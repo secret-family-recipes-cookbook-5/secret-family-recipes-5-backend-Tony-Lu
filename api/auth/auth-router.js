@@ -14,8 +14,18 @@ router.get('/', (req, res) => {
 })
 
 router.post('/register', validateRegistration, (req, res, next) => {
-    const { username, password } = req.body
+    const { 
+        first_name, 
+        last_name, 
+        username, 
+        password 
+    } = req.body
     const hash = bcrypt.hashSync(password, 6)
+    User.addNewUser({ first_name, last_name, username, password: hash })
+        .then(newUser => {
+            res.status(201).json(newUser)
+        })
+        .catch(next)
 })
 
 // router.post('/login', (req, res, next) => {

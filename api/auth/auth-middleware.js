@@ -12,25 +12,37 @@ function validateRegistration (req, res, next) {
         username, 
         password 
     } = req.body
-    if (!first_name) {
+    if (
+        !first_name ||
+        !last_name ||
+        !username ||
+        !password
+    ) {
         res.status(401).json({
-            message: "first name is required"
-        })
-    } else if (!last_name) {
-        res.status(401).json({
-            message: "last name is required"
-        })
-    } else if (!username) {
-        res.status(401).json({
-            message: "username is required"
-        })
-    } else if (!password) {
-        res.status(401).json({
-            message: "password is required"
+            message: "first name, last name, username, and password are required"
         })
     } else {
         next()
     }
+    // if (!first_name) {
+    //     res.status(401).json({
+    //         message: "first name is required"
+    //     })
+    // } else if (!last_name) {
+    //     res.status(401).json({
+    //         message: "last name is required"
+    //     })
+    // } else if (!username) {
+    //     res.status(401).json({
+    //         message: "username is required"
+    //     })
+    // } else if (!password) {
+    //     res.status(401).json({
+    //         message: "password is required"
+    //     })
+    // } else {
+    //     next()
+    // }
 }
 
 async function usernameTaken (req, res, next) {
