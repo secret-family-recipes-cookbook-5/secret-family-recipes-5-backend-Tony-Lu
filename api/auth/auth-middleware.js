@@ -1,8 +1,25 @@
 const User = require('../users/users-model')
+const { JWT_SECRET } = require('../secrets/index')
+const jwt = require('jsonwebtoken')
 
 // custom middlewares here
 function restricted (req, res, next) {
-    next()
+    const token = req.headers.authorization
+    if (!token) {
+        res.status(401).json({
+            message: "token required"
+        })
+    }
+    jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
+        if (err) {
+            res.status(401).json({
+                message: "invalid token"
+            })
+        } else {
+            req.decodedToken = decodedToken
+            next()
+        }
+    })
 }
 
 function validateRegistration (req, res, next) {
