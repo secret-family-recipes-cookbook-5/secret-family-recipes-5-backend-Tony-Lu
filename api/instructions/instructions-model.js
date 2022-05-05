@@ -10,11 +10,11 @@ function getInstructionById(step_id) {
 //     return null
 // }
 
-// function updateInstruction(step_number) {
+// function updateInstruction(step_id) {
 //     return null
 // }
 
-// function deleteInstruction(step_number) {
+// function deleteInstruction(step_id) {
 //     return null
 // }
 
