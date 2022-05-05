@@ -43,14 +43,20 @@ router.put(
 router.delete(
     '/:id',
     checkInstructionId,
-    (req, res, next) => {
+    async (req, res, next) => {
         // res.send('delete instruction')
-        Instruction.deleteInstruction(req.params.id)
-            .then(deleted => {
-                console.log('deleted item ==>', deleted)
-                res.json(deleted)
-            })
-            .catch(next)
+        try {
+            await Instruction.deleteInstruction(req.params.id)
+            res.json(req.instruction)
+        } catch (err) {
+            next()
+        }
+            
+        // .then(deleted => {
+            //     console.log('deleted item ==>', deleted)
+            //     res.json(deleted)
+            // })
+            // .catch(next)
     }
 )
 
