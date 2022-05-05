@@ -30,7 +30,6 @@ router.put(
     checkInstructionId,
     validateInstruction,
     (req, res, next) => {
-        // res.send('update instruction')
         Instruction.updateInstruction(req.params.id, req.body)
             .then(updated => {
                 console.log("updated instruction ==>", updated)
@@ -44,19 +43,12 @@ router.delete(
     '/:id',
     checkInstructionId,
     async (req, res, next) => {
-        // res.send('delete instruction')
         try {
             await Instruction.deleteInstruction(req.params.id)
             res.json(req.instruction)
         } catch (err) {
             next()
         }
-            
-        // .then(deleted => {
-            //     console.log('deleted item ==>', deleted)
-            //     res.json(deleted)
-            // })
-            // .catch(next)
     }
 )
 
