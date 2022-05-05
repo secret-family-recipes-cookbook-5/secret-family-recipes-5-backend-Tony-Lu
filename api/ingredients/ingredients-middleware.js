@@ -21,6 +21,7 @@ async function checkIngredientId (req, res, next) {
             message: "ingredient not found"
         })
     } else {
+        req.ingredient = ingredient
         next()
     }
 }
