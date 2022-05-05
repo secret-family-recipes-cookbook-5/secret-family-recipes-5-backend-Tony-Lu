@@ -25,7 +25,7 @@ router.post(
         console.log("POST req.body ==>", req.body)
         Ingredient.addIngredient(req.body)
             .then(newIngredient => {
-                res.json(newIngredient)
+                res.status(201).json(newIngredient)
             })
             .catch(next)
     }
