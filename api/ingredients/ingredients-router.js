@@ -50,15 +50,20 @@ router.put(
 router.delete(
     '/:id',
     checkIngredientId,
-    (req, res, next) => {
+    async (req, res, next) => {
         // res.send('delete ingredient')
-        console.log("DELETE req.params.id ==>", req.params.id)
-        Ingredient.deleteIngredient(req.params.id)
-            .then(deleted => {
-                console.log("deleted ==>", deleted)
-                res.json(deleted)
-            })
-            .catch(next)
+        try {
+            console.log("DELETE req.params.id ==>", req.params.id)
+            await Ingredient.deleteIngredient(req.params.id)
+            res.json(req.ingredient)    
+        } catch (err) {
+            next()
+        }
+        // .then(deleted => {
+            //     console.log("deleted ==>", deleted)
+            //     res.json(deleted)
+            // })
+            // .catch(next)
     }
 )
 
