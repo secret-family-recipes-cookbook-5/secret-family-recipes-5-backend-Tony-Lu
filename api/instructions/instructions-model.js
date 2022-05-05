@@ -6,9 +6,11 @@ function getInstructionById(step_id) {
         .first()
 }
 
-// function addInstruction(instruction) {
-//     return null
-// }
+function addInstruction(newInstruction) {
+    return db('instructions')
+        .insert(newInstruction)
+        .then(([step_id]) => getInstructionById(step_id))
+}
 
 // function updateInstruction(step_id) {
 //     return null
@@ -19,8 +21,8 @@ function getInstructionById(step_id) {
 // }
 
 module.exports = {
-    getInstructionById
-    // addInstruction,
+    getInstructionById,
+    addInstruction,
     // updateInstruction,
     // deleteInstruction
 }

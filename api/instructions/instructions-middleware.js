@@ -1,4 +1,4 @@
-function validateInstructions (req, res, next) {
+function validateInstruction (req, res, next) {
     const newInstruction = req.body
     if (
         !newInstruction.step_number || 
@@ -18,6 +18,6 @@ function checkInstructionId (req, res, next) {
 }
 
 module.exports = {
-    validateInstructions,
+    validateInstruction,
     checkInstructionId
 }
