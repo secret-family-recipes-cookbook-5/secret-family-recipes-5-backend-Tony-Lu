@@ -29,4 +29,21 @@ router.post(
     }
 )
 
+router.put(
+    '/:id',
+    // checkInstructionId,
+    // validateInstruction,
+    (req, res, next) => {
+        res.send('update instruction')
+    }
+)
+
+router.delete(
+    '/:id',
+    // checkInstructionId,
+    (req, res, next) => {
+        res.send('delete instruction')
+    }
+)
+
 module.exports = router
