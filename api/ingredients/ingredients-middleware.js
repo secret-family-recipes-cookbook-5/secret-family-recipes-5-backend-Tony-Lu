@@ -1,3 +1,5 @@
+const Ingredient = require('./ingredients-model')
+
 function validateIngredient (req, res, next) {
     const newIngredient = req.body
     if (
@@ -12,8 +14,15 @@ function validateIngredient (req, res, next) {
     }
 }
 
-function checkIngredientId (req, res, next) {
-    next()
+async function checkIngredientId (req, res, next) {
+    const ingredient = await Ingredient.getIngredientById(req.params.id)
+    if (!ingredient) {
+        res.status(404).json({
+            message: "ingredient not found"
+        })
+    } else {
+        next()
+    }
 }
 
 module.exports = {

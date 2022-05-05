@@ -1,20 +1,29 @@
 const router = require('express').Router()
 const Ingredient = require('./ingredients-model')
+const { 
+    validateIngredient, 
+    checkIngredientId 
+} = require('./ingredients-middleware') 
 
 router.get('/', (req, res, next) => {
     res.send('Hello from the ingredients router')
 })
 
-router.get('/:id', (req, res, next) => {
-    Ingredient.getIngredientById(req.params.id)
-        .then(ingredient => {
-            res.json(ingredient)
-        })
-        .catch(next)
-})
+router.get(
+    '/:id',
+    checkIngredientId, 
+    (req, res, next) => {
+        Ingredient.getIngredientById(req.params.id)
+            .then(ingredient => {
+                res.json(ingredient)
+            })
+            .catch(next)
+    }
+)
 
 router.post(
-    '/', 
+    '/',
+    validateIngredient, 
     (req, res, next) => {
         // res.send('add ingredients')
         console.log("POST req.body ==>", req.body)
@@ -28,6 +37,8 @@ router.post(
 
 router.put(
     '/:id',
+    validateIngredient,
+    checkIngredientId,
     (req, res, next) => { 
         // res.send('update ingredient')
         console.log("PUT req.body ==>", req.body)
@@ -42,6 +53,7 @@ router.put(
 
 router.delete(
     '/:id',
+    checkIngredientId,
     (req, res, next) => {
         // res.send('delete ingredient')
         console.log("DELETE req.params.id ==>", req.params.id)
