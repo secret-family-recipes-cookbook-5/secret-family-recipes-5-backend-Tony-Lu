@@ -1,7 +1,8 @@
 const User = require('../users/users-model')
 const router = require('express').Router()
+const { restricted } = require('../auth/auth-middleware')
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', restricted, async (req, res, next) => {
     try {
         const user = await User.findByUserId(req.params.id)
         if (!user) {
@@ -15,6 +16,14 @@ router.get('/:id', async (req, res, next) => {
         next(err)
     }
         
+})
+
+router.put('/:id', async (req, res, next) => {
+    try {
+
+    } catch (err) {
+        next(err)
+    }
 })
 
 module.exports = router
