@@ -71,23 +71,24 @@ router.post('/', validateRecipe, (req, res, next) => {
         .catch(next)
 })
 
-// router.get('/searchbytitle?q:title', async (req, res, next) => {
-//     try {
-//         console.log("req.query ==>", req.query)
-//         const recipesFound = await Recipe.getRecipeByTitle(req.params.title)
-//         if (!recipesFound) {
-//             res.status(404).json({
-//                 message: "no recipes found associated with title or category"
-//             })
-//         } else {
-//             console.log("recipesFound ==>", recipesFound)
-//             // res.json(recipesFound)
-//             res.send('got results!')
-//         }
-//     } catch (err) {
-//         next()
-//     }
-// })
+router.get('/search', async (req, res, next) => {
+    try {
+        // console.log("req.query ==>", req.query)
+        // const recipesFound = await Recipe.getRecipeByTitle(req.params.title)
+        // if (!recipesFound) {
+        //     res.status(404).json({
+        //         message: "no recipes found associated with title or category"
+        //     })
+        // } else {
+        //     console.log("recipesFound ==>", recipesFound)
+        //     // res.json(recipesFound)
+        //     res.send('got results!')
+        // }
+        
+    } catch (err) {
+        next()
+    }
+})
 
 router.put(
     '/:id', 

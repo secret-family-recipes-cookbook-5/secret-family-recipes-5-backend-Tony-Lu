@@ -59,6 +59,12 @@ function getInstructionsByRecipeId(recipe_id) {
 //         .orderBy('recipe_id')
 // }
 
+function findBy(filter) {
+    return db('recipes')
+        .where('filter', filter)
+        .orderBy('recipe_id')
+}
+
 function addNewRecipe(newRecipe) {
     return db('recipes')
         .insert(newRecipe)
@@ -86,6 +92,7 @@ module.exports = {
     getInstructionsByRecipeId,
     // getRecipeByTitle,
     // getRecipeByCategory,
+    findBy,
     addNewRecipe,
     updateRecipe,
     deleteRecipe,
