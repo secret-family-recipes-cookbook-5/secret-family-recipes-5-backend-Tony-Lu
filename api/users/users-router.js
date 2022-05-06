@@ -1,6 +1,5 @@
 const User = require('../users/users-model')
 const router = require('express').Router()
-const { restricted } = require('../auth/auth-middleware')
 const { checkUserId, validateUserUpdate } = require('./users-middleware')
 
 router.get('/:id', checkUserId, async (req, res, next) => {
