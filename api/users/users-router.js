@@ -2,7 +2,7 @@ const User = require('../users/users-model')
 const router = require('express').Router()
 const { restricted } = require('../auth/auth-middleware')
 
-router.get('/:id', restricted, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const user = await User.findByUserId(req.params.id)
         if (!user) {
