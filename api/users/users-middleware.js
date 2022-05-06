@@ -12,4 +12,15 @@ async function checkUserId (req, res, next) {
         }
 }
 
-module.exports = { checkUserId }
+function validateUserUpdate (req, res, next) {
+    const { first_name, last_name, username } = req.body
+    if (!first_name || !last_name || !username) {
+        res.status(400).json({
+            message: "must have first name, last name, and username"
+        })
+    } else {
+        next()
+    }
+}
+
+module.exports = { checkUserId, validateUserUpdate }
