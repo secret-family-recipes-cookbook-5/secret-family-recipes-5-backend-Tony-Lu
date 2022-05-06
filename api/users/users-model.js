@@ -16,8 +16,16 @@ async function addNewUser(newUser) {
     return findByUserId(user_id)
 }
 
+async function updateUser(user_id, changes) {
+    return db('users')
+        .where('user_id', user_id)
+        .update(changes)
+        .then(count => (count > 0 ? findByUserId(user_id) : null))
+}
+
 module.exports = {
     findBy,
     findByUserId,
-    addNewUser
+    addNewUser,
+    updateUser
 }

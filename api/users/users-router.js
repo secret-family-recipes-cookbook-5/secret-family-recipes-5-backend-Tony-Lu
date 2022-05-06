@@ -1,7 +1,7 @@
 const User = require('../users/users-model')
 const router = require('express').Router()
 const { restricted } = require('../auth/auth-middleware')
-const { checkUserId } = require('./users-middleware')
+const { checkUserId, validateUserUpdate } = require('./users-middleware')
 
 router.get('/:id', checkUserId, async (req, res, next) => {
     try {
@@ -11,9 +11,13 @@ router.get('/:id', checkUserId, async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', checkUserId, validateUserUpdate, async (req, res, next) => {
     try {
-
+        const updatedUserInfo = await User.updateUser(
+            req.params.id, 
+            req.body
+        )
+        res.json(updatedUserInfo)
     } catch (err) {
         next(err)
     }
