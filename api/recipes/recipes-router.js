@@ -71,24 +71,31 @@ router.post('/', validateRecipe, (req, res, next) => {
         .catch(next)
 })
 
-router.get('/search', async (req, res, next) => {
-    try {
-        // console.log("req.query ==>", req.query)
-        // const recipesFound = await Recipe.getRecipeByTitle(req.params.title)
-        // if (!recipesFound) {
-        //     res.status(404).json({
-        //         message: "no recipes found associated with title or category"
-        //     })
-        // } else {
-        //     console.log("recipesFound ==>", recipesFound)
-        //     // res.json(recipesFound)
-        //     res.send('got results!')
-        // }
-        
-    } catch (err) {
-        next()
-    }
-})
+// router.get('/', async (req, res, next) => {
+//     try {
+//         // console.log("req.query ==>", req.query)
+//         // const recipesFound = await Recipe.getRecipeByTitle(req.params.title)
+//         // if (!recipesFound) {
+//         //     res.status(404).json({
+//         //         message: "no recipes found associated with title or category"
+//         //     })
+//         // } else {
+//         //     console.log("recipesFound ==>", recipesFound)
+//         //     // res.json(recipesFound)
+//         //     res.send('got results!')
+//         // }
+//         const recipeByTitle = await Recipe.getRecipeByTitle(req.query)
+//         if (!recipeByTitle) {
+//             res.status(404).json({
+//                 message: "recipe not found by associated title"
+//             })
+//         } else {
+//             res.json(recipeByTitle)
+//         }
+//     } catch (err) {
+//         next()
+//     }
+// })
 
 router.put(
     '/:id', 
