@@ -28,7 +28,6 @@ router.put(
     (req, res, next) => {
         Instruction.updateInstruction(req.params.id, req.body)
             .then(updated => {
-                console.log("updated instruction ==>", updated)
                 res.json(updated)
             })
             .catch(next)
